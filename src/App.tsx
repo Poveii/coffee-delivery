@@ -1,5 +1,3 @@
 export function App() {
-  return (
-    <div>Coffee Delivery</div>
-  )
+  return <div>Coffee Delivery</div>
 }
