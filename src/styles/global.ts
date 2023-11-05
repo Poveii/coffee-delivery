@@ -7,6 +7,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :root {
+    --lateral-spacing: 11vw;
+  }
+
   body {
     background-color: ${(props) => props.theme.base.background};
     color: ${(props) => props.theme.base.text};
