@@ -15,7 +15,7 @@ export const HeroContainer = styled.div`
   background-size: cover;
 
   div {
-    width: 36.75rem;
+    width: min-content;
 
     h1 {
       color: ${(props) => props.theme.base.title};
@@ -32,6 +32,13 @@ export const HeroContainer = styled.div`
       line-height: 130%;
       margin-bottom: 4.125rem;
     }
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    column-gap: 2.5rem;
+    row-gap: 1.25rem;
   }
 
   img {
