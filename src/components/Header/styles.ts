@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
+import { ButtonBase } from '../../styles/base'
+
 export const HeaderContainer = styled.header`
-  width: 100vw;
+  width: 100%;
   height: 6.5rem;
 
   display: flex;
@@ -9,7 +11,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 
   padding-block: 2rem;
-  padding-inline: 9.65vw;
+  padding-inline: var(--lateral-spacing);
 
   img {
     width: 5.3125rem;
@@ -22,17 +24,6 @@ export const HeaderContainer = styled.header`
 
     list-style: none;
   }
-`
-
-const ButtonBase = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  padding: 0.5rem;
-  border: none;
-  border-radius: 0.375rem;
-  cursor: pointer;
 `
 
 export const AddressButton = styled(ButtonBase)`
