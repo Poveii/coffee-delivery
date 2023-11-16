@@ -46,3 +46,34 @@ export const HeroContainer = styled.div`
     flex: 1;
   }
 `
+
+export const CoffeeListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 2rem;
+  padding-inline: var(--lateral-spacing);
+  padding-bottom: 5.875rem;
+
+  h2 {
+    align-self: start;
+
+    color: ${(props) => props.theme.base.subtitle};
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 130%;
+
+    margin-bottom: 3.375rem;
+  }
+
+  > ul {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+
+    row-gap: 2.5rem;
+    column-gap: 2rem;
+  }
+`
