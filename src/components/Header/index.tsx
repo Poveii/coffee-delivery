@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 
 import { AddressButton, CartButton, HeaderContainer } from './styles'
@@ -6,7 +7,9 @@ import logo from '../../assets/logo.svg'
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={logo} alt="" />
+      <Link to={'/'}>
+        <img src={logo} alt="" />
+      </Link>
 
       <nav>
         <ul>
@@ -17,9 +20,11 @@ export function Header() {
             </AddressButton>
           </li>
           <li>
-            <CartButton>
-              <ShoppingCart size={22} weight="fill" />
-            </CartButton>
+            <Link to={'/checkout'}>
+              <CartButton>
+                <ShoppingCart size={22} weight="fill" />
+              </CartButton>
+            </Link>
           </li>
         </ul>
       </nav>
