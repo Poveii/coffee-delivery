@@ -34,6 +34,21 @@ export const CardContainer = styled.div`
   }
 `
 
+export const SelectedCoffeeContainer = styled(CardContainer)`
+  width: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  border-radius: 0.375rem 2.75rem;
+
+  .summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+`
+
 export const HeadingContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -98,4 +113,54 @@ export const FormContainer = styled.form`
   #fu {
     grid-area: fu;
   }
+`
+
+export const Divider = styled.div`
+  border-top: 1px solid ${(props) => props.theme.base.button};
+  margin-block: 0.25rem;
+`
+
+export const BetweenContainer = styled.div<{ $bold?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    font-size: 0.875rem;
+    line-height: 130%;
+    color: ${(props) => props.theme.base.text};
+  }
+
+  span {
+    line-height: 130%;
+    color: ${(props) => props.theme.base.text};
+  }
+
+  ${(props) =>
+    props.$bold &&
+    `
+    p, span {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: ${props.theme.base.subtitle};
+    }
+  `}
+`
+
+export const ConfirmButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0.5rem;
+  margin-top: 0.25rem;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 160%;
+  background-color: ${(props) => props.theme.yellow.default};
+  color: ${(props) => props.theme.base.white};
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
 `

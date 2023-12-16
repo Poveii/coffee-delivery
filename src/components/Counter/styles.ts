@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const CounterContainer = styled.div`
-  height: 2.375rem;
+  height: inherit;
   padding: 0.5rem;
 
   display: flex;

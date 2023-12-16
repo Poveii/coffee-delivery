@@ -76,6 +76,7 @@ export const BuyContainer = styled.div`
   }
 
   .buy {
+    height: 2.375rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
