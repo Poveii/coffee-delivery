@@ -21,7 +21,7 @@ export function Header() {
           </li>
           <li>
             <Link to={'/checkout'}>
-              <CartButton>
+              <CartButton $cartCount={2}>
                 <ShoppingCart size={22} weight="fill" />
               </CartButton>
             </Link>

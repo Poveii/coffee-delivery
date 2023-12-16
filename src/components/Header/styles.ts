@@ -50,18 +50,43 @@ export const AddressButton = styled(ButtonBase)`
   }
 `
 
-export const CartButton = styled(ButtonBase)`
+export const CartButton = styled(ButtonBase)<{ $cartCount: number }>`
   background-color: ${(props) => props.theme.yellow.light};
   color: ${(props) => props.theme.yellow.dark};
+  position: relative;
+
+  &::after {
+    content: '${(props) => props.$cartCount}';
+    width: 1.1719rem;
+    height: 1.1719rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -8px;
+    right: -8.32px;
+    border-radius: 999px;
+    background-color: ${(props) => props.theme.yellow.dark};
+    color: ${(props) => props.theme.base.white};
+    border: 0.5px solid ${(props) => props.theme.yellow.dark};
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.045rem;
+  }
 
   &:hover {
     background-color: ${(props) => props.theme.yellow.dark};
     color: ${(props) => props.theme.base.white};
-    transition: background-color 0.1s;
+    transition: background-color 0.1s ease-out;
 
     svg {
       color: ${(props) => props.theme.base.white};
-      transition: color 0.1s;
+      transition: color 0.1s ease-out;
+    }
+
+    &::after {
+      border-color: ${(props) => props.theme.yellow.light};
+      transition: border-color 0.1s ease-out;
     }
   }
 `
