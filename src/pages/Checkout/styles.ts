@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Link } from 'react-router-dom'
+
 export const CheckoutContainer = styled.div`
   display: flex;
   gap: 2rem;
@@ -147,7 +149,7 @@ export const BetweenContainer = styled.div<{ $bold?: boolean }>`
   `}
 `
 
-export const ConfirmButton = styled.button`
+export const ConfirmButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,6 +157,7 @@ export const ConfirmButton = styled.button`
   padding: 0.75rem 0.5rem;
   margin-top: 0.25rem;
 
+  text-decoration: none;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 160%;

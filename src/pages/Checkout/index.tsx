@@ -115,7 +115,9 @@ export function Checkout() {
             </BetweenContainer>
           </div>
 
-          <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+          <ConfirmButton to={'/checkout/success'}>
+            CONFIRMAR PEDIDO
+          </ConfirmButton>
         </SelectedCoffeeContainer>
       </SectionContainer>
     </CheckoutContainer>
