@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { useTheme } from 'styled-components'
 import {
   Bank,
@@ -12,7 +12,7 @@ import { InputForm } from './components/InputForm'
 import { SelectCard } from './components/SelectCard'
 import { CheckoutCoffeeCard } from './components/CheckoutCoffeeCard/index'
 
-import { coffeeList } from '../../data/coffeeList'
+import { CartContext } from '../../contexts/CartContext'
 
 import {
   BetweenContainer,
@@ -29,9 +29,7 @@ import {
 export function Checkout() {
   const theme = useTheme()
 
-  const sampleCoffeeList = coffeeList.filter(
-    (coffee) => coffee.id === 0 || coffee.id === 5,
-  )
+  const { items } = useContext(CartContext)
 
   return (
     <CheckoutContainer>
@@ -87,12 +85,12 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
 
         <SelectedCoffeeContainer>
-          {sampleCoffeeList.map((coffeeItem, index, array) => {
+          {items.map((coffeeItem, index, array) => {
             return (
               <Fragment key={coffeeItem.id}>
                 <CheckoutCoffeeCard
-                  coffeeImage={coffeeItem.coffee}
-                  label={coffeeItem.title}
+                  coffeeImage={coffeeItem.itemImage}
+                  label={coffeeItem.label}
                   quantity={1}
                   price={coffeeItem.price}
                 />
