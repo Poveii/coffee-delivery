@@ -1,5 +1,5 @@
 import { ShoppingCart } from '@phosphor-icons/react'
-import { ICoffeeList } from '../../data/coffeeList'
+import { ICoffeeList } from '../../../../data/coffeeList'
 
 import { AddToCardButton, BuyContainer, CoffeeCardContainer } from './styles'
 import { Counter } from '../../../../components/Counter'
@@ -11,6 +11,7 @@ export function CoffeeCard({
   tags,
   title,
   description,
+  price,
 }: ICoffeeCardProps) {
   return (
     <CoffeeCardContainer>
@@ -27,7 +28,7 @@ export function CoffeeCard({
 
       <BuyContainer>
         <p>
-          R$ <b>9,90</b>
+          R$ <b>{price}</b>
         </p>
 
         <div className="buy">

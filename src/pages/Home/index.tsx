@@ -50,7 +50,7 @@ export function Home() {
         <h2>Nossos Cafés</h2>
 
         <ul>
-          {coffeeList.map(({ coffee, description, title, id, tags }) => {
+          {coffeeList.map(({ coffee, description, title, id, tags, price }) => {
             return (
               <CoffeeCard
                 key={id}
@@ -58,6 +58,7 @@ export function Home() {
                 description={description}
                 title={title}
                 tags={tags}
+                price={price}
               />
             )
           })}
