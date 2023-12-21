@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { useTheme } from 'styled-components'
 import {
   Bank,
@@ -27,6 +28,10 @@ import {
 
 export function Checkout() {
   const theme = useTheme()
+
+  const sampleCoffeeList = coffeeList.filter(
+    (coffee) => coffee.id === 0 || coffee.id === 5,
+  )
 
   return (
     <CheckoutContainer>
@@ -82,21 +87,23 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
 
         <SelectedCoffeeContainer>
-          <CheckoutCoffeeCard
-            coffeeImage={coffeeList[0].coffee}
-            label={coffeeList[0].title}
-            quantity={1}
-            price={'R$9,99'}
-          />
-
-          <Divider />
-
-          <CheckoutCoffeeCard
-            coffeeImage={coffeeList[5].coffee}
-            label={coffeeList[5].title}
-            quantity={1}
-            price={'R$19,80'}
-          />
+          {sampleCoffeeList.map((coffeeItem, index, array) => {
+            return (
+              <Fragment key={coffeeItem.id}>
+                <CheckoutCoffeeCard
+                  coffeeImage={coffeeItem.coffee}
+                  label={coffeeItem.title}
+                  quantity={1}
+                  price={coffeeItem.price}
+                />
+                {index === array.length - 1 ? (
+                  <></>
+                ) : (
+                  <Divider key={++index + array.length} />
+                )}
+              </Fragment>
+            )
+          })}
 
           <Divider />
 
