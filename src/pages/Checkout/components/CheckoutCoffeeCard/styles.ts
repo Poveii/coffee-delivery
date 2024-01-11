@@ -57,7 +57,6 @@ export const RemoveButton = styled.button`
 
   span {
     font-size: 0.75rem;
-    line-height: 160%;
     color: ${(props) => props.theme.base.text};
   }
 `

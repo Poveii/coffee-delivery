@@ -14,9 +14,11 @@ const SelectCardContainer = styled.button`
   cursor: pointer;
 
   span {
+    width: 100%;
     font-size: 0.75rem;
-    line-height: 160%;
+    text-align: left;
     text-transform: uppercase;
+    white-space: nowrap;
     color: ${(props) => props.theme.base.text};
   }
 `
