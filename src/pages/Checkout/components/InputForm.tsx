@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 const InputContainer = styled.label<{ $optionalText: string }>`
-  position: relative;
   display: grid;
 
   input {
     display: flex;
+    width: 100%;
     height: 2.625rem;
     padding: 0.75rem;
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const CheckoutContainer = styled.div`
   display: flex;
+  justify-content: center;
   gap: 2rem;
 
   padding-block: 2.5rem;
@@ -37,7 +38,7 @@ export const CardContainer = styled.div`
 `
 
 export const SelectedCoffeeContainer = styled(CardContainer)`
-  width: 28rem;
+  min-width: 26rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -79,14 +80,14 @@ export const HeadingContainer = styled.div`
 
 export const FormContainer = styled.form`
   display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: repeat(4, 42px);
+  grid-template-columns: 200px 1fr 60px;
   grid-template-areas:
     'cep . .'
     'street street street'
     'number complement complement'
     'district city fu';
-  gap: 1rem;
+  row-gap: 1rem;
+  column-gap: 0.75rem;
 
   #cep {
     grid-area: cep;
@@ -102,6 +103,7 @@ export const FormContainer = styled.form`
 
   #complement {
     grid-area: complement;
+    position: relative;
   }
 
   #district {
