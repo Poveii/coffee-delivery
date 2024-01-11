@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import { ButtonBase } from '../../../../styles/base'
 
 export const CoffeeCardContainer = styled.li`
-  width: 16rem;
-  height: 19.375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  display: grid;
-  justify-items: center;
   padding-inline: 1.25rem;
   padding-bottom: 1.25rem;
 
@@ -50,6 +49,7 @@ export const CoffeeCardContainer = styled.li`
   }
 
   .description {
+    flex: 1;
     text-align: center;
     font-size: 0.875rem;
     line-height: 130%;

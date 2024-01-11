@@ -5,7 +5,7 @@ import heroBackground from '../../assets/hero_background.png'
 export const HeroContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 3.5rem;
+  gap: 1.75rem;
 
   padding-block: 5.875rem;
   padding-inline: var(--lateral-spacing);
@@ -65,12 +65,12 @@ export const CoffeeListContainer = styled.div`
     font-weight: 800;
     line-height: 130%;
 
-    margin-bottom: 3.375rem;
+    margin-bottom: 2.125rem;
   }
 
   > ul {
     display: grid;
-    grid-template-columns: repeat(4, max-content);
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
     justify-content: center;
 
     row-gap: 2.5rem;
