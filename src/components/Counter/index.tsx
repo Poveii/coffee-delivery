@@ -2,7 +2,7 @@ import { Minus, Plus } from '@phosphor-icons/react'
 
 import { CounterContainer } from './styles'
 
-export function Counter({ quantity = 1 }: { quantity?: number }) {
+export function Counter({ quantity }: { quantity: number }) {
   return (
     <CounterContainer>
       <button className="decrement">

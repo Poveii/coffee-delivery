@@ -32,7 +32,7 @@ export function CoffeeCard({
         </p>
 
         <div className="buy">
-          <Counter />
+          <Counter quantity={1} />
 
           <AddToCardButton>
             <ShoppingCart weight="fill" size={22} />
