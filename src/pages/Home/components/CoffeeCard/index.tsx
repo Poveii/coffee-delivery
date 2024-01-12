@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { ICoffeeList } from '../../../../data/coffeeList'
 
@@ -13,6 +14,8 @@ export function CoffeeCard({
   description,
   price,
 }: ICoffeeCardProps) {
+  const [count, setCount] = useState(1)
+
   return (
     <CoffeeCardContainer>
       <img src={coffee} alt="" />
@@ -28,11 +31,11 @@ export function CoffeeCard({
 
       <BuyContainer>
         <p>
-          R$ <b>{price}</b>
+          R$ <b>{price.replace('.', ',')}</b>
         </p>
 
         <div className="buy">
-          <Counter quantity={1} />
+          <Counter quantity={count} setQuantity={setCount} />
 
           <AddToCardButton>
             <ShoppingCart weight="fill" size={22} />

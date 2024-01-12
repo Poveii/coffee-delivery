@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTheme } from 'styled-components'
 import { Trash } from '@phosphor-icons/react'
 
@@ -19,6 +20,9 @@ export function CheckoutCoffeeCard({
 }: ICheckoutCoffeeCard) {
   const theme = useTheme()
 
+  const [count, setCount] = useState(quantity)
+  const newPrice = (Number(price) * count).toFixed(2)
+
   return (
     <CheckoutCoffeeCardContainer>
       <div className="information">
@@ -28,7 +32,7 @@ export function CheckoutCoffeeCard({
           <p>{label}</p>
 
           <div className="actions">
-            <Counter quantity={quantity} />
+            <Counter quantity={count} setQuantity={setCount} />
             <RemoveButton>
               <Trash color={theme.purple.default} />
               <span>REMOVER</span>
@@ -37,7 +41,7 @@ export function CheckoutCoffeeCard({
         </div>
       </div>
 
-      <span>R${price}</span>
+      <span>R${newPrice.toString().replace('.', ',')}</span>
     </CheckoutCoffeeCardContainer>
   )
 }
