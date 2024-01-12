@@ -8,7 +8,7 @@ import logo from '../../assets/logo.svg'
 import { AddressButton, CartButton, HeaderContainer } from './styles'
 
 export function Header() {
-  const { totalAmount } = useContext(CartContext)
+  const { items } = useContext(CartContext)
 
   return (
     <HeaderContainer>
@@ -26,7 +26,7 @@ export function Header() {
           </li>
           <li>
             <Link to={'/checkout'}>
-              <CartButton $cartCount={totalAmount}>
+              <CartButton $cartCount={items.length}>
                 <ShoppingCart size={22} weight="fill" />
               </CartButton>
             </Link>

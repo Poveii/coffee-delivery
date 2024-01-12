@@ -12,7 +12,6 @@ interface CartItem {
 
 interface CartContextType {
   items: CartItem[]
-  totalAmount: number
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -34,12 +33,9 @@ const sampleCheckoutCartItems: CartItem[] = coffeeList
   })
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [totalAmount] = useState(sampleCheckoutCartItems.length)
   const [items] = useState(sampleCheckoutCartItems)
 
   return (
-    <CartContext.Provider value={{ items, totalAmount }}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={{ items }}>{children}</CartContext.Provider>
   )
 }
