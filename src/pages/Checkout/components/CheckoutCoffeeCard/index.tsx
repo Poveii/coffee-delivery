@@ -3,6 +3,7 @@ import { useTheme } from 'styled-components'
 import { Trash } from '@phosphor-icons/react'
 
 import { CartContext } from '../../../../contexts/CartContext'
+import { replaceDotWithComma } from '../../../../utils'
 
 import { Counter } from '../../../../components/Counter'
 import { CheckoutCoffeeCardContainer, RemoveButton } from './styles'
@@ -12,7 +13,7 @@ interface ICheckoutCoffeeCard {
   coffeeImage: string
   label: string
   quantity: number
-  price: string
+  price: number
 }
 
 export function CheckoutCoffeeCard({
@@ -25,7 +26,7 @@ export function CheckoutCoffeeCard({
   const theme = useTheme()
 
   const [count, setCount] = useState(quantity)
-  const newPrice = (Number(price) * count).toFixed(2)
+  const newPrice = replaceDotWithComma(price * count)
 
   const { modifyQuantityItems } = useContext(CartContext)
   useEffect(() => {
@@ -50,7 +51,7 @@ export function CheckoutCoffeeCard({
         </div>
       </div>
 
-      <span>R${newPrice.toString().replace('.', ',')}</span>
+      <span>R${newPrice}</span>
     </CheckoutCoffeeCardContainer>
   )
 }

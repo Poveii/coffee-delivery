@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { ICoffeeList } from '../../../../data/coffeeList'
 
-import { AddToCardButton, BuyContainer, CoffeeCardContainer } from './styles'
 import { Counter } from '../../../../components/Counter'
+import { replaceDotWithComma } from '../../../../utils'
+
+import { AddToCardButton, BuyContainer, CoffeeCardContainer } from './styles'
 
 type ICoffeeCardProps = Omit<ICoffeeList, 'id'>
 
@@ -31,7 +33,7 @@ export function CoffeeCard({
 
       <BuyContainer>
         <p>
-          R$ <b>{price.replace('.', ',')}</b>
+          R$ <b>{replaceDotWithComma(price)}</b>
         </p>
 
         <div className="buy">

@@ -10,10 +10,11 @@ import {
 
 import { InputForm } from './components/InputForm'
 import { SelectCard } from './components/SelectCard'
-import { CheckoutCoffeeCard } from './components/CheckoutCoffeeCard/index'
+import { CheckoutCoffeeCard } from './components/CheckoutCoffeeCard'
 
 import { CartContext } from '../../contexts/CartContext'
 
+import { replaceDotWithComma } from '../../utils'
 import {
   BetweenContainer,
   CardContainer,
@@ -32,8 +33,8 @@ export function Checkout() {
   const { items } = useContext(CartContext)
 
   const totalItemsPrice = items.reduce((acc, { price, quantity }) => {
-    if (quantity > 1) return acc + Number(price) * quantity
-    return acc + Number(price)
+    if (quantity > 1) return acc + price * quantity
+    return acc + price
   }, 0)
 
   return (
@@ -114,9 +115,7 @@ export function Checkout() {
           <div className="summary">
             <BetweenContainer>
               <p>Total de itens</p>
-              <span>
-                R$ {totalItemsPrice.toFixed(2).toString().replace('.', ',')}
-              </span>
+              <span>R$ {replaceDotWithComma(totalItemsPrice)}</span>
             </BetweenContainer>
             <BetweenContainer>
               <p>Entrega</p>

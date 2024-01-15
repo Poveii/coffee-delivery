@@ -19,7 +19,7 @@ export interface ICoffeeList {
   tags: string[]
   title: string
   description: string
-  price: string
+  price: number
 }
 
 export const coffeeList: ICoffeeList[] = [
@@ -29,7 +29,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['tradicional'],
     title: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '4.99',
+    price: 4.99,
   },
   {
     id: 1,
@@ -37,7 +37,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['tradicional'],
     title: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
-    price: '6.99',
+    price: 6.99,
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['tradicional'],
     title: 'Expresso Cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
-    price: '9.90',
+    price: 9.9,
   },
   {
     id: 3,
@@ -53,7 +53,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['tradicional', 'gelado'],
     title: 'Expresso Gelado',
     description: 'Bebida preparada com café expresso e cubos de gelo',
-    price: '7.99',
+    price: 7.99,
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['tradicional', 'com leite'],
     title: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
-    price: '7.99',
+    price: 7.99,
   },
   {
     id: 5,
@@ -70,7 +70,7 @@ export const coffeeList: ICoffeeList[] = [
     title: 'Latte',
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-    price: '8.90',
+    price: 8.9,
   },
   {
     id: 6,
@@ -79,7 +79,7 @@ export const coffeeList: ICoffeeList[] = [
     title: 'Capuccino',
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma',
-    price: '9.90',
+    price: 9.9,
   },
   {
     id: 7,
@@ -88,7 +88,7 @@ export const coffeeList: ICoffeeList[] = [
     title: 'Macchiato',
     description:
       'Café expresso misturado com um pouco de leite quente e espuma',
-    price: '8.90',
+    price: 8.9,
   },
   {
     id: 8,
@@ -96,7 +96,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['tradicional', 'com leite'],
     title: 'Mochaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
-    price: '9.90',
+    price: 9.9,
   },
   {
     id: 9,
@@ -104,7 +104,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['especial', 'com leite'],
     title: 'Chocolate Quente',
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
-    price: '8.90',
+    price: 8.9,
   },
   {
     id: 10,
@@ -113,7 +113,7 @@ export const coffeeList: ICoffeeList[] = [
     title: 'Cubano',
     description:
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
-    price: '13.90',
+    price: 13.9,
   },
   {
     id: 11,
@@ -121,7 +121,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['especial'],
     title: 'Havaiano',
     description: 'Bebida adocicada preparada com café e leite de coco',
-    price: '11.90',
+    price: 11.9,
   },
   {
     id: 12,
@@ -129,7 +129,7 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['especial'],
     title: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
-    price: '12.99',
+    price: 12.99,
   },
   {
     id: 13,
@@ -137,6 +137,6 @@ export const coffeeList: ICoffeeList[] = [
     tags: ['especial', 'alcoólico'],
     title: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-    price: '13.90',
+    price: 13.9,
   },
 ]
