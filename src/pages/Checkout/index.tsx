@@ -37,6 +37,9 @@ export function Checkout() {
     return acc + price
   }, 0)
 
+  const deliveryFee = 3.5
+  const totalPriceSum = totalItemsPrice + deliveryFee
+
   return (
     <CheckoutContainer>
       <SectionContainer>
@@ -119,11 +122,11 @@ export function Checkout() {
             </BetweenContainer>
             <BetweenContainer>
               <p>Entrega</p>
-              <span>R$ 3,50</span>
+              <span>R$ {replaceDotWithComma(deliveryFee)}</span>
             </BetweenContainer>
             <BetweenContainer $bold={true}>
               <p>Total</p>
-              <span>R$ 17,39</span>
+              <span>R$ {replaceDotWithComma(totalPriceSum)}</span>
             </BetweenContainer>
           </div>
 

@@ -51,7 +51,7 @@ export function CheckoutCoffeeCard({
         </div>
       </div>
 
-      <span>R${newPrice}</span>
+      <span>R$ {newPrice}</span>
     </CheckoutCoffeeCardContainer>
   )
 }
