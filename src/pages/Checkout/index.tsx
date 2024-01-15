@@ -31,6 +31,11 @@ export function Checkout() {
 
   const { items } = useContext(CartContext)
 
+  const totalItemsPrice = items.reduce((acc, { price, quantity }) => {
+    if (quantity > 1) return acc + Number(price) * quantity
+    return acc + Number(price)
+  }, 0)
+
   return (
     <CheckoutContainer>
       <SectionContainer>
@@ -89,6 +94,7 @@ export function Checkout() {
             return (
               <Fragment key={coffeeItem.id}>
                 <CheckoutCoffeeCard
+                  itemId={coffeeItem.id}
                   coffeeImage={coffeeItem.itemImage}
                   label={coffeeItem.label}
                   quantity={1}
@@ -108,7 +114,9 @@ export function Checkout() {
           <div className="summary">
             <BetweenContainer>
               <p>Total de itens</p>
-              <span>R$ 29,70</span>
+              <span>
+                R$ {totalItemsPrice.toFixed(2).toString().replace('.', ',')}
+              </span>
             </BetweenContainer>
             <BetweenContainer>
               <p>Entrega</p>
@@ -116,7 +124,7 @@ export function Checkout() {
             </BetweenContainer>
             <BetweenContainer $bold={true}>
               <p>Total</p>
-              <span>R$ 33,20</span>
+              <span>R$ 17,39</span>
             </BetweenContainer>
           </div>
 

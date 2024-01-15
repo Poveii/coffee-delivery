@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useCallback, useState } from 'react'
 
 import { coffeeList } from '../data/coffeeList'
 
@@ -12,6 +12,7 @@ interface CartItem {
 
 interface CartContextType {
   items: CartItem[]
+  modifyQuantityItems: (itemId: number, count: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -33,9 +34,22 @@ const sampleCheckoutCartItems: CartItem[] = coffeeList
   })
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [items] = useState(sampleCheckoutCartItems)
+  const [items, setItems] = useState(sampleCheckoutCartItems)
+
+  const modifyQuantityItems = useCallback((itemId: number, count: number) => {
+    setItems((state) =>
+      state.map((item) => {
+        if (item.id === itemId) {
+          item.quantity = count
+        }
+        return item
+      }),
+    )
+  }, [])
 
   return (
-    <CartContext.Provider value={{ items }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ items, modifyQuantityItems }}>
+      {children}
+    </CartContext.Provider>
   )
 }
