@@ -6,6 +6,7 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  ReceiptX,
 } from '@phosphor-icons/react'
 
 import { InputForm } from './components/InputForm'
@@ -23,6 +24,7 @@ import {
   Divider,
   FormContainer,
   HeadingContainer,
+  IndexContainer,
   SectionContainer,
   SelectedCoffeeContainer,
 } from './styles'
@@ -31,6 +33,8 @@ export function Checkout() {
   const theme = useTheme()
 
   const { items } = useContext(CartContext)
+
+  const isThereItems = items.length > 0
 
   const totalItemsPrice = items.reduce((acc, { price, quantity }) => {
     if (quantity > 1) return acc + price * quantity
@@ -94,43 +98,55 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
 
         <SelectedCoffeeContainer>
-          {items.map((coffeeItem, index, array) => {
-            return (
-              <Fragment key={coffeeItem.id}>
-                <CheckoutCoffeeCard
-                  itemId={coffeeItem.id}
-                  coffeeImage={coffeeItem.itemImage}
-                  label={coffeeItem.label}
-                  quantity={coffeeItem.quantity}
-                  price={coffeeItem.price}
-                />
-                {index === array.length - 1 ? (
-                  <></>
-                ) : (
-                  <Divider key={++index + array.length} />
-                )}
-              </Fragment>
-            )
-          })}
+          {isThereItems ? (
+            <>
+              {items.map((coffeeItem, index, array) => {
+                return (
+                  <Fragment key={coffeeItem.id}>
+                    <CheckoutCoffeeCard
+                      itemId={coffeeItem.id}
+                      coffeeImage={coffeeItem.itemImage}
+                      label={coffeeItem.label}
+                      quantity={coffeeItem.quantity}
+                      price={coffeeItem.price}
+                    />
+                    {index === array.length - 1 ? (
+                      <></>
+                    ) : (
+                      <Divider key={++index + array.length} />
+                    )}
+                  </Fragment>
+                )
+              })}
 
-          <Divider />
+              <Divider />
 
-          <div className="summary">
-            <BetweenContainer>
-              <p>Total de itens</p>
-              <span>R$ {replaceDotWithComma(totalItemsPrice)}</span>
-            </BetweenContainer>
-            <BetweenContainer>
-              <p>Entrega</p>
-              <span>R$ {replaceDotWithComma(deliveryFee)}</span>
-            </BetweenContainer>
-            <BetweenContainer $bold={true}>
-              <p>Total</p>
-              <span>R$ {replaceDotWithComma(totalPriceSum)}</span>
-            </BetweenContainer>
-          </div>
+              <div className="summary">
+                <BetweenContainer>
+                  <p>Total de itens</p>
+                  <span>R$ {replaceDotWithComma(totalItemsPrice)}</span>
+                </BetweenContainer>
+                <BetweenContainer>
+                  <p>Entrega</p>
+                  <span>R$ {replaceDotWithComma(deliveryFee)}</span>
+                </BetweenContainer>
+                <BetweenContainer $bold={true}>
+                  <p>Total</p>
+                  <span>R$ {replaceDotWithComma(totalPriceSum)}</span>
+                </BetweenContainer>
+              </div>
+            </>
+          ) : (
+            <IndexContainer>
+              <ReceiptX size={56} color={theme.base.text} />
+              <p>Você não adicionou nenhum item ao seu carrinho.</p>
+            </IndexContainer>
+          )}
 
-          <ConfirmButton to={'/checkout/success'}>
+          <ConfirmButton
+            to={'/checkout/success'}
+            className={!isThereItems ? 'disabled' : ''}
+          >
             CONFIRMAR PEDIDO
           </ConfirmButton>
         </SelectedCoffeeContainer>

@@ -168,4 +168,23 @@ export const ConfirmButton = styled(Link)`
   border: none;
   border-radius: 0.375rem;
   cursor: pointer;
+
+  &.disabled {
+    background-color: ${(props) => props.theme.yellow.dark};
+    color: ${(props) => props.theme.base.input};
+    user-select: none;
+    pointer-events: none;
+  }
+`
+
+export const IndexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  > p {
+    font-size: 0.875rem;
+  }
 `
