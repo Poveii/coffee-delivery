@@ -28,7 +28,7 @@ export function CheckoutCoffeeCard({
   const [count, setCount] = useState(quantity)
   const newPrice = replaceDotWithComma(price * count)
 
-  const { modifyQuantityItems } = useContext(CartContext)
+  const { modifyQuantityItems, removeItemFromCart } = useContext(CartContext)
   useEffect(() => {
     modifyQuantityItems(itemId, count)
   }, [count, itemId, modifyQuantityItems])
@@ -43,7 +43,7 @@ export function CheckoutCoffeeCard({
 
           <div className="actions">
             <Counter quantity={count} setQuantity={setCount} />
-            <RemoveButton>
+            <RemoveButton onClick={() => removeItemFromCart(itemId)}>
               <Trash color={theme.purple.default} />
               <span>REMOVER</span>
             </RemoveButton>

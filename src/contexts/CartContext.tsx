@@ -14,6 +14,7 @@ interface CartContextType {
   items: CartItem[]
   modifyQuantityItems: (itemId: number, count: number) => void
   addItemToCart: (itemId: number, quantity: number) => void
+  removeItemFromCart: (itemId: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -68,8 +69,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     })
   }
 
+  const removeItemFromCart = (itemId: number) => {
+    const item = items.find((item) => item.id === itemId)
+
+    setItems((state) =>
+      state.filter((stateItem) => {
+        return stateItem !== item
+      }),
+    )
+  }
+
   return (
-    <CartContext.Provider value={{ items, modifyQuantityItems, addItemToCart }}>
+    <CartContext.Provider
+      value={{ items, modifyQuantityItems, addItemToCart, removeItemFromCart }}
+    >
       {children}
     </CartContext.Provider>
   )
