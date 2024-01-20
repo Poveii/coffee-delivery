@@ -1,15 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { ICoffeeList } from '../../../../data/coffeeList'
 
 import { Counter } from '../../../../components/Counter'
 import { replaceDotWithComma } from '../../../../utils'
+import { CartContext } from '../../../../contexts/CartContext'
 
 import { AddToCardButton, BuyContainer, CoffeeCardContainer } from './styles'
 
-type ICoffeeCardProps = Omit<ICoffeeList, 'id'>
+type ICoffeeCardProps = ICoffeeList
 
 export function CoffeeCard({
+  id,
   coffee,
   tags,
   title,
@@ -17,6 +19,8 @@ export function CoffeeCard({
   price,
 }: ICoffeeCardProps) {
   const [count, setCount] = useState(1)
+
+  const { addItemToCart } = useContext(CartContext)
 
   return (
     <CoffeeCardContainer>
@@ -39,7 +43,7 @@ export function CoffeeCard({
         <div className="buy">
           <Counter quantity={count} setQuantity={setCount} />
 
-          <AddToCardButton>
+          <AddToCardButton onClick={() => addItemToCart(id, count)}>
             <ShoppingCart weight="fill" size={22} />
           </AddToCardButton>
         </div>

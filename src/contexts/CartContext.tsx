@@ -13,6 +13,7 @@ interface CartItem {
 interface CartContextType {
   items: CartItem[]
   modifyQuantityItems: (itemId: number, count: number) => void
+  addItemToCart: (itemId: number, quantity: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -21,17 +22,19 @@ interface CartContextProviderProps {
   children: ReactNode
 }
 
-const sampleCheckoutCartItems: CartItem[] = coffeeList
-  .filter((coffee) => coffee.id === 0 || coffee.id === 5)
-  .map((item) => {
-    return {
-      id: item.id,
-      itemImage: item.coffee,
-      label: item.title,
-      quantity: 1,
-      price: item.price,
-    }
-  })
+const checkoutCartItems: CartItem[] = coffeeList.map((item) => {
+  return {
+    id: item.id,
+    itemImage: item.coffee,
+    label: item.title,
+    quantity: 1,
+    price: item.price,
+  }
+})
+
+const sampleCheckoutCartItems = checkoutCartItems.filter(
+  (coffee) => coffee.id === 0 || coffee.id === 5,
+)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [items, setItems] = useState(sampleCheckoutCartItems)
@@ -47,8 +50,26 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     )
   }, [])
 
+  const addItemToCart = (itemId: number, quantity: number) => {
+    const item = checkoutCartItems.find((item) => item.id === itemId)
+    if (!item) return
+
+    setItems((state) => {
+      const itemAlreadyExists = state.find(
+        (stateItem) => stateItem.id === itemId,
+      )
+      if (itemAlreadyExists) {
+        state[itemId].quantity += quantity
+      } else {
+        item.quantity = quantity
+        state.push(item)
+      }
+      return state
+    })
+  }
+
   return (
-    <CartContext.Provider value={{ items, modifyQuantityItems }}>
+    <CartContext.Provider value={{ items, modifyQuantityItems, addItemToCart }}>
       {children}
     </CartContext.Provider>
   )

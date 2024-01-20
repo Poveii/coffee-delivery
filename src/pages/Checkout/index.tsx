@@ -101,7 +101,7 @@ export function Checkout() {
                   itemId={coffeeItem.id}
                   coffeeImage={coffeeItem.itemImage}
                   label={coffeeItem.label}
-                  quantity={1}
+                  quantity={coffeeItem.quantity}
                   price={coffeeItem.price}
                 />
                 {index === array.length - 1 ? (
