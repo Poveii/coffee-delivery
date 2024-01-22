@@ -55,20 +55,21 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }, [])
 
   const addItemToCart = (itemId: number, quantity: number) => {
-    const item = checkoutCartItems.find((item) => item.id === itemId)
-    if (!item) return
+    const itemExists = items.find((item) => item.id === itemId)
+
+    if (itemExists) {
+      const newItems = items.map((item) => {
+        if (item.id === itemId) item.quantity += quantity
+        return item
+      })
+
+      return setItems(newItems)
+    }
 
     setItems((state) => {
-      const itemAlreadyExists = state.find(
-        (stateItem) => stateItem.id === itemId,
-      )
-      if (itemAlreadyExists) {
-        state[itemId].quantity += quantity
-      } else {
-        item.quantity = quantity
-        state.push(item)
-      }
-      return state
+      const item = checkoutCartItems[itemId]
+      item.quantity = quantity
+      return [...state, item]
     })
   }
 
