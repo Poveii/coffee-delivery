@@ -33,12 +33,15 @@ const checkoutCartItems: CartItem[] = coffeeList.map((item) => {
   }
 })
 
-const sampleCheckoutCartItems = checkoutCartItems.filter(
-  (coffee) => coffee.id === 0 || coffee.id === 5,
-)
+// for debug proposes ↓
+/*
+  const sampleCheckoutCartItems = checkoutCartItems.filter(
+    (coffee) => coffee.id === 0 || coffee.id === 5,
+  )
+*/
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [items, setItems] = useState(sampleCheckoutCartItems)
+  const [items, setItems] = useState<CartItem[]>([])
 
   const modifyQuantityItems = useCallback((itemId: number, count: number) => {
     setItems((state) =>
