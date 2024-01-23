@@ -145,6 +145,7 @@ export function Checkout() {
 
           <ConfirmButton
             to={'/checkout/success'}
+            title="Finalizar compra"
             className={!isThereItems ? 'disabled' : ''}
           >
             CONFIRMAR PEDIDO

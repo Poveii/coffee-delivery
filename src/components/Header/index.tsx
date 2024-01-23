@@ -12,7 +12,7 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <Link to={'/'}>
+      <Link to={'/'} title="Voltar para a página inicial">
         <img src={logo} alt="" />
       </Link>
 
@@ -25,7 +25,7 @@ export function Header() {
             </AddressButton>
           </li>
           <li>
-            <Link to={'/checkout'}>
+            <Link to={'/checkout'} title="Ir para o carrinho">
               <CartButton $cartCount={items.length}>
                 <ShoppingCart size={22} weight="fill" />
               </CartButton>
