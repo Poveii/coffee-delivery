@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom'
-
 export const CheckoutContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -151,7 +149,7 @@ export const BetweenContainer = styled.div<{ $bold?: boolean }>`
   `}
 `
 
-export const ConfirmButton = styled(Link)`
+export const ConfirmButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,7 +157,6 @@ export const ConfirmButton = styled(Link)`
   padding: 0.75rem 0.5rem;
   margin-top: 0.25rem;
 
-  text-decoration: none;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 160%;
@@ -169,11 +166,9 @@ export const ConfirmButton = styled(Link)`
   border-radius: 0.375rem;
   cursor: pointer;
 
-  &.disabled {
+  &[disabled] {
     background-color: ${(props) => props.theme.yellow.dark};
     color: ${(props) => props.theme.base.input};
-    user-select: none;
-    pointer-events: none;
   }
 `
 

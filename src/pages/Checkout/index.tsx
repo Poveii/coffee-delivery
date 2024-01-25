@@ -1,4 +1,8 @@
 import { Fragment, useContext } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 import { useTheme } from 'styled-components'
 import {
   Bank,
@@ -29,10 +33,41 @@ import {
   SelectedCoffeeContainer,
 } from './styles'
 
+const checkoutFormSchema = z.object({
+  cep: z.coerce
+    .number({ invalid_type_error: 'Somente números' })
+    .min(1, { message: 'O campo CEP é obrigatório' }),
+  street: z.string().min(1, { message: 'O campo Rua é obrigatório' }),
+  number: z.coerce
+    .number({ invalid_type_error: 'Somente números' })
+    .min(1, { message: 'O campo Número é obrigatório' }),
+  complement: z.string().optional(),
+  district: z.string().min(1, { message: 'O campo Bairro é obrigatório' }),
+  city: z.string().min(1, { message: 'O campo Cidade é obrigatório' }),
+  fu: z
+    .string()
+    .regex(/[A-Za-z]/, { message: 'Somente letras' })
+    .min(1, { message: 'O campo UF é obrigatório' })
+    .toUpperCase(),
+})
+
+export type checkoutFormData = z.infer<typeof checkoutFormSchema>
+
 export function Checkout() {
   const theme = useTheme()
 
   const { items } = useContext(CartContext)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<checkoutFormData>({
+    resolver: zodResolver(checkoutFormSchema),
+    shouldUseNativeValidation: true,
+  })
+
+  const handleClickConfirm = (data: checkoutFormData) => console.log(data)
 
   const isThereItems = items.length > 0
 
@@ -59,18 +94,38 @@ export function Checkout() {
             </div>
           </HeadingContainer>
 
-          <FormContainer>
-            <InputForm id="cep" placeholder="CEP" />
-            <InputForm id="street" placeholder="Rua" />
-            <InputForm id="number" placeholder="Número" />
+          <FormContainer
+            id="checkout-form"
+            onSubmit={handleSubmit(handleClickConfirm)}
+          >
+            <InputForm
+              id="cep"
+              placeholder="CEP"
+              maxLength={8}
+              register={register}
+            />
+            <InputForm id="street" placeholder="Rua" register={register} />
+            <InputForm
+              id="number"
+              placeholder="Número"
+              maxLength={5}
+              register={register}
+            />
             <InputForm
               id="complement"
               placeholder="Complemento"
               optionalText="Opcional"
+              register={register}
             />
-            <InputForm id="district" placeholder="Bairro" />
-            <InputForm id="city" placeholder="Cidade" />
-            <InputForm id="fu" placeholder="UF" />
+            <InputForm id="district" placeholder="Bairro" register={register} />
+            <InputForm id="city" placeholder="Cidade" register={register} />
+            <InputForm
+              id="fu"
+              placeholder="UF"
+              maxLength={2}
+              style={{ textTransform: 'uppercase' }}
+              register={register}
+            />
           </FormContainer>
         </CardContainer>
 
@@ -144,9 +199,10 @@ export function Checkout() {
           )}
 
           <ConfirmButton
-            to={'/checkout/success'}
+            type="submit"
+            form="checkout-form"
             title="Finalizar compra"
-            className={!isThereItems ? 'disabled' : ''}
+            disabled={!isThereItems || isSubmitting}
           >
             CONFIRMAR PEDIDO
           </ConfirmButton>

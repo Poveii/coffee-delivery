@@ -1,3 +1,7 @@
+import { InputHTMLAttributes } from 'react'
+import { UseFormRegister } from 'react-hook-form'
+import { checkoutFormData } from '..'
+
 import styled from 'styled-components'
 
 const InputContainer = styled.label<{ $optionalText: string }>`
@@ -37,16 +41,37 @@ const InputContainer = styled.label<{ $optionalText: string }>`
   }`}
 `
 
-interface InputFormProps {
+type inputIds =
+  | 'number'
+  | 'cep'
+  | 'street'
+  | 'complement'
+  | 'district'
+  | 'city'
+  | 'fu'
+
+interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
   optionalText?: string
-  id: string
+  id: inputIds
   placeholder: string
+  register: UseFormRegister<checkoutFormData>
 }
 
-export function InputForm({ optionalText, id, placeholder }: InputFormProps) {
+export function InputForm({
+  optionalText,
+  id,
+  placeholder,
+  register,
+  ...props
+}: InputFormProps) {
   return (
     <InputContainer $optionalText={optionalText ?? ''} id={id}>
-      <input type="text" placeholder={placeholder} />
+      <input
+        type="text"
+        placeholder={placeholder}
+        {...register(id)}
+        {...props}
+      />
     </InputContainer>
   )
 }
