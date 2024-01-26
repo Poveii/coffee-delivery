@@ -166,7 +166,7 @@ export const ConfirmButton = styled.button`
   border-radius: 0.375rem;
   cursor: pointer;
 
-  &[disabled] {
+  &:disabled {
     background-color: ${(props) => props.theme.yellow.dark};
     color: ${(props) => props.theme.base.input};
   }

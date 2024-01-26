@@ -24,6 +24,10 @@ const InputContainer = styled.label<{ $optionalText: string }>`
     &::-webkit-input-placeholder {
       color: ${(props) => props.theme.base.label};
     }
+
+    &:read-only {
+      filter: brightness(0.95);
+    }
   }
 
   ${(props) =>

@@ -103,28 +103,47 @@ export function Checkout() {
               placeholder="CEP"
               maxLength={8}
               register={register}
+              readOnly={!isThereItems}
             />
-            <InputForm id="street" placeholder="Rua" register={register} />
+            <InputForm
+              id="street"
+              placeholder="Rua"
+              register={register}
+              readOnly={!isThereItems}
+            />
             <InputForm
               id="number"
               placeholder="Número"
               maxLength={5}
               register={register}
+              readOnly={!isThereItems}
             />
             <InputForm
               id="complement"
               placeholder="Complemento"
               optionalText="Opcional"
               register={register}
+              readOnly={!isThereItems}
             />
-            <InputForm id="district" placeholder="Bairro" register={register} />
-            <InputForm id="city" placeholder="Cidade" register={register} />
+            <InputForm
+              id="district"
+              placeholder="Bairro"
+              register={register}
+              readOnly={!isThereItems}
+            />
+            <InputForm
+              id="city"
+              placeholder="Cidade"
+              register={register}
+              readOnly={!isThereItems}
+            />
             <InputForm
               id="fu"
               placeholder="UF"
               maxLength={2}
               style={{ textTransform: 'uppercase' }}
               register={register}
+              readOnly={!isThereItems}
             />
           </FormContainer>
         </CardContainer>
