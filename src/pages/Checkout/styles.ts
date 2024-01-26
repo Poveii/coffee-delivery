@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const CheckoutContainer = styled.div`
   display: flex;
@@ -28,11 +29,11 @@ export const SectionContainer = styled.section`
 export const CardContainer = styled.div`
   padding: 2.5rem;
   background-color: ${(props) => props.theme.base.card};
+`
 
-  > .container {
-    display: flex;
-    gap: 0.75rem;
-  }
+export const SelectCardRoot = styled(RadioGroup.Root)`
+  display: flex;
+  gap: 0.75rem;
 `
 
 export const SelectedCoffeeContainer = styled(CardContainer)`

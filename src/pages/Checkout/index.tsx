@@ -1,5 +1,5 @@
 import { Fragment, useContext } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -30,6 +30,7 @@ import {
   HeadingContainer,
   IndexContainer,
   SectionContainer,
+  SelectCardRoot,
   SelectedCoffeeContainer,
 } from './styles'
 
@@ -49,6 +50,9 @@ const checkoutFormSchema = z.object({
     .regex(/[A-Za-z]/, { message: 'Somente letras' })
     .min(1, { message: 'O campo UF é obrigatório' })
     .toUpperCase(),
+  paymentType: z
+    .string()
+    .min(1, { message: 'Escolher a forma de pagamento é obrigatória' }),
 })
 
 export type checkoutFormData = z.infer<typeof checkoutFormSchema>
@@ -59,6 +63,7 @@ export function Checkout() {
   const { items } = useContext(CartContext)
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting },
@@ -160,11 +165,32 @@ export function Checkout() {
             </div>
           </HeadingContainer>
 
-          <div className="container">
-            <SelectCard icon={CreditCard} text={'cartão de crédito'} />
-            <SelectCard icon={Bank} text={'cartão de débito'} />
-            <SelectCard icon={Money} text={'dinheiro'} />
-          </div>
+          <Controller
+            control={control}
+            name="paymentType"
+            defaultValue="credit"
+            render={({ field }) => {
+              return (
+                <SelectCardRoot
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  disabled={!isThereItems}
+                >
+                  <SelectCard
+                    value="credit"
+                    icon={CreditCard}
+                    text={'cartão de crédito'}
+                  />
+                  <SelectCard
+                    value="debit"
+                    icon={Bank}
+                    text={'cartão de débito'}
+                  />
+                  <SelectCard value="money" icon={Money} text={'dinheiro'} />
+                </SelectCardRoot>
+              )
+            }}
+          />
         </CardContainer>
       </SectionContainer>
 
