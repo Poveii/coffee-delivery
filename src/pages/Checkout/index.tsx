@@ -62,7 +62,7 @@ export function Checkout() {
   const theme = useTheme()
   const navigate = useNavigate()
 
-  const { items } = useContext(CartContext)
+  const { items, clearCart } = useContext(CartContext)
 
   const {
     control,
@@ -75,6 +75,7 @@ export function Checkout() {
   })
 
   const handleClickConfirm = (data: checkoutFormData) => {
+    clearCart()
     navigate('/checkout/success', { state: data })
   }
 
