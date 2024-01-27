@@ -2,6 +2,7 @@ import { Fragment, useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from 'styled-components'
 import {
@@ -59,6 +60,7 @@ export type checkoutFormData = z.infer<typeof checkoutFormSchema>
 
 export function Checkout() {
   const theme = useTheme()
+  const navigate = useNavigate()
 
   const { items } = useContext(CartContext)
 
@@ -72,7 +74,9 @@ export function Checkout() {
     shouldUseNativeValidation: true,
   })
 
-  const handleClickConfirm = (data: checkoutFormData) => console.log(data)
+  const handleClickConfirm = (data: checkoutFormData) => {
+    navigate('/checkout/success', { state: data })
+  }
 
   const isThereItems = items.length > 0
 

@@ -1,9 +1,28 @@
+import { useLocation } from 'react-router-dom'
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
+
+import { checkoutFormData } from '../Checkout'
 
 import successIllustration from '../../assets/success_illustration.svg'
 import { OrderInfoContainer, SuccessContainer } from './styles'
 
 export function Success() {
+  const location = useLocation()
+  const formData: checkoutFormData = location.state
+
+  let formattedPaymentType = formData.paymentType
+  switch (formattedPaymentType) {
+    case 'credit':
+      formattedPaymentType = 'Cartão de Crédito'
+      break
+    case 'debit':
+      formattedPaymentType = 'Cartão de Débito'
+      break
+    case 'money':
+      formattedPaymentType = 'Dinheiro'
+      break
+  }
+
   return (
     <SuccessContainer>
       <div className="container">
@@ -16,8 +35,13 @@ export function Success() {
               <MapPin weight="fill" />
             </i>
             <p>
-              Entrega em <b>Rua João Daniel Martinelli, 102</b>{' '}
-              <span>Farrapos - Porto Alegre, RS</span>
+              Entrega em{' '}
+              <b>
+                {formData.street}, {formData.number}
+              </b>{' '}
+              <span>
+                {formData.district} - {formData.city}, {formData.fu}
+              </span>
             </p>
           </div>
 
@@ -40,7 +64,7 @@ export function Success() {
             <p>
               Pagamento na entrega
               <span>
-                <b>Cartão de Crédito</b>
+                <b>{formattedPaymentType}</b>
               </span>
             </p>
           </div>
