@@ -1,6 +1,5 @@
 import { InputHTMLAttributes } from 'react'
-import { UseFormRegister } from 'react-hook-form'
-import { checkoutFormData } from '..'
+import { useFormContext } from 'react-hook-form'
 
 import styled from 'styled-components'
 
@@ -58,16 +57,16 @@ interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
   optionalText?: string
   id: inputIds
   placeholder: string
-  register: UseFormRegister<checkoutFormData>
 }
 
 export function InputForm({
   optionalText,
   id,
   placeholder,
-  register,
   ...props
 }: InputFormProps) {
+  const { register } = useFormContext()
+
   return (
     <InputContainer $optionalText={optionalText ?? ''} id={id}>
       <input

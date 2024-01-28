@@ -1,5 +1,5 @@
 import { Fragment, useContext } from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
@@ -64,12 +64,7 @@ export function Checkout() {
 
   const { items, clearCart } = useContext(CartContext)
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<checkoutFormData>({
+  const checkoutForm = useForm<checkoutFormData>({
     resolver: zodResolver(checkoutFormSchema),
     shouldUseNativeValidation: true,
   })
@@ -106,55 +101,50 @@ export function Checkout() {
 
           <FormContainer
             id="checkout-form"
-            onSubmit={handleSubmit(handleClickConfirm)}
+            onSubmit={checkoutForm.handleSubmit(handleClickConfirm)}
           >
-            <InputForm
-              id="cep"
-              placeholder="CEP"
-              maxLength={8}
-              register={register}
-              readOnly={!isThereItems}
-            />
-            <InputForm
-              id="street"
-              placeholder="Rua"
-              register={register}
-              readOnly={!isThereItems}
-            />
-            <InputForm
-              id="number"
-              placeholder="Número"
-              maxLength={5}
-              register={register}
-              readOnly={!isThereItems}
-            />
-            <InputForm
-              id="complement"
-              placeholder="Complemento"
-              optionalText="Opcional"
-              register={register}
-              readOnly={!isThereItems}
-            />
-            <InputForm
-              id="district"
-              placeholder="Bairro"
-              register={register}
-              readOnly={!isThereItems}
-            />
-            <InputForm
-              id="city"
-              placeholder="Cidade"
-              register={register}
-              readOnly={!isThereItems}
-            />
-            <InputForm
-              id="fu"
-              placeholder="UF"
-              maxLength={2}
-              style={{ textTransform: 'uppercase' }}
-              register={register}
-              readOnly={!isThereItems}
-            />
+            <FormProvider {...checkoutForm}>
+              <InputForm
+                id="cep"
+                placeholder="CEP"
+                maxLength={8}
+                readOnly={!isThereItems}
+              />
+              <InputForm
+                id="street"
+                placeholder="Rua"
+                readOnly={!isThereItems}
+              />
+              <InputForm
+                id="number"
+                placeholder="Número"
+                maxLength={5}
+                readOnly={!isThereItems}
+              />
+              <InputForm
+                id="complement"
+                placeholder="Complemento"
+                optionalText="Opcional"
+                readOnly={!isThereItems}
+              />
+              <InputForm
+                id="district"
+                placeholder="Bairro"
+                readOnly={!isThereItems}
+              />
+              <InputForm
+                id="city"
+                placeholder="Cidade"
+                readOnly={!isThereItems}
+              />
+              <InputForm
+                id="fu"
+                placeholder="UF"
+                maxLength={2}
+                style={{ textTransform: 'uppercase' }}
+                readOnly={!isThereItems}
+              />
+            </FormProvider>
           </FormContainer>
         </CardContainer>
 
@@ -171,7 +161,7 @@ export function Checkout() {
           </HeadingContainer>
 
           <Controller
-            control={control}
+            control={checkoutForm.control}
             name="paymentType"
             defaultValue="credit"
             render={({ field }) => {
@@ -252,7 +242,7 @@ export function Checkout() {
             type="submit"
             form="checkout-form"
             title="Finalizar compra"
-            disabled={!isThereItems || isSubmitting}
+            disabled={!isThereItems || checkoutForm.formState.isSubmitting}
           >
             CONFIRMAR PEDIDO
           </ConfirmButton>
