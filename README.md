@@ -1,27 +1,30 @@
-# React + TypeScript + Vite
+# Coffee Delivery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um dos desafios organizado pela [Rocketseat](https://www.rocketseat.com.br/), na trilha ReactJS do curso de especialização Ignite. Esse é o segundo desafio.
 
-Currently, two official plugins are available:
+![Foto de apresentação do projeto, com o nome do projeto em cima como título, embaixo tem dizendo que é um desafio do Ignite e da Rocketseat, logo depois o print do site finalizado, tudo isso com o fundo amarelo, principal cor do site.](.github/presentation.jpg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## A ideia
 
-## Expanding the ESLint configuration
+Foi desenvolver uma aplicação que tenha um carrinho de compras de uma cafeteria fictícia, com as seguintes funcionalidades:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Listagem de produtos (cafés) disponíveis para compra
+- Adicionar uma quantidade específicas de itens no carrinho
+- Aumentar ou remover a quantidade de itens no carrinho
+- Formulário para o usuário preencher o seu endereço
+- Exibir o total de itens no carrinho no Header
+- Exibir o valor total da soma de itens no carrinho multiplicados pelo valor
 
-- Configure the top-level `parserOptions` property like this:
+Lembrando de vários assuntos e conhecimentos adquiridos no curso como: 
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Estados
+- ContextAPI
+- LocalStorage
+- Listas e chaves no ReactJS
+- Componentização
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Design
+
+Nas instruções do desafio, tinha um link para o layout da aplicação, bem [aqui](https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate).
+
+> Vai direto pro Figma, duplicando o projeto na sua conta. Se você não tiver, crie uma por esse link [aqui](https://www.figma.com/signup)
