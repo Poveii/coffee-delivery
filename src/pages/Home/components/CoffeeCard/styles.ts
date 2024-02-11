@@ -44,6 +44,7 @@ export const CoffeeCardContainer = styled.li`
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 130%;
+    text-align: center;
     color: ${(props) => props.theme.base.subtitle};
     margin-bottom: 0.5rem;
   }
@@ -55,6 +56,12 @@ export const CoffeeCardContainer = styled.li`
     line-height: 130%;
     color: ${(props) => props.theme.base.label};
     margin-bottom: 1.875rem;
+  }
+
+  @media screen and (min-width: 1028px) and (max-width: 1180px) {
+    h3 {
+      width: 80%;
+    }
   }
 `
 

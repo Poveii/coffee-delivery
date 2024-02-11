@@ -25,4 +25,8 @@ export const CounterContainer = styled.div`
     text-align: center;
     line-height: 130%;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    font-size: 0.875rem;
+  }
 `

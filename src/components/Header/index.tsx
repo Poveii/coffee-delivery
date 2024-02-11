@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 
 import { CartContext } from '../../contexts/CartContext'
+import { MobileTooltip } from '../MobileTooltip'
 
 import logo from '../../assets/logo.svg'
 import { AddressButton, CartButton, HeaderContainer } from './styles'
@@ -19,10 +20,12 @@ export function Header() {
       <nav>
         <ul>
           <li>
-            <AddressButton>
-              <MapPin size={22} weight="fill" />
-              Porto Alegre, RS
-            </AddressButton>
+            <MobileTooltip content="Porto Alegre, RS">
+              <AddressButton>
+                <MapPin size={22} weight="fill" />
+                <span>Porto Alegre, RS</span>
+              </AddressButton>
+            </MobileTooltip>
           </li>
           <li>
             <Link to={'/checkout'} title="Ir para o carrinho">

@@ -12,7 +12,7 @@ export const SuccessContainer = styled.div`
     > h1 {
       color: ${(props) => props.theme.yellow.dark};
       font-family: 'Baloo 2', sans-serif;
-      font-size: 2rem;
+      font-size: 2em;
       font-weight: 800;
       line-height: 130%;
       margin-bottom: 0.25rem;
@@ -20,9 +20,38 @@ export const SuccessContainer = styled.div`
 
     > p {
       color: ${(props) => props.theme.base.subtitle};
-      font-size: 1.25rem;
+      font-size: 1.25em;
       line-height: 130%;
       margin-bottom: 2.5rem;
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 1.25rem;
+    font-size: 0.875rem;
+    padding-block: 2.5rem;
+
+    > img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1240px) {
+    font-size: 0.75rem;
+
+    > img {
+      width: 80%;
+    }
+  }
+
+  @media screen and (min-width: 888px) and (max-width: 1304px) {
+    flex-direction: row;
+    align-items: flex-end;
+
+    > img {
+      width: 44%;
     }
   }
 `
@@ -34,6 +63,7 @@ export const OrderInfoContainer = styled.div`
   gap: 2rem;
   padding: 2.5rem;
 
+  font-size: 1rem;
   border-radius: 0.375rem 2.25rem;
   border: 1px solid transparent;
   background-image: linear-gradient(
@@ -84,5 +114,18 @@ export const OrderInfoContainer = styled.div`
 
   #payment i {
     background-color: ${(props) => props.theme.yellow.dark};
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 1240px) {
+    width: fit-content;
+    font-size: 0.875rem;
+
+    > div {
+      align-items: flex-start;
+
+      p {
+        line-height: 140%;
+      }
+    }
   }
 `

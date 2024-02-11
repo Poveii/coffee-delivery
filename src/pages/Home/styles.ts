@@ -15,20 +15,18 @@ export const HeroContainer = styled.div`
   background-size: cover;
 
   div {
-    width: min-content;
-
     h1 {
       color: ${(props) => props.theme.base.title};
       font-family: 'Baloo 2', sans-serif;
       font-weight: 800;
-      font-size: 3rem;
+      font-size: 3em;
       line-height: 130%;
       margin-bottom: 1rem;
     }
 
     p {
       color: ${(props) => props.theme.base.subtitle};
-      font-size: 1.25rem;
+      font-size: 1.25em;
       line-height: 130%;
       margin-bottom: 4.125rem;
     }
@@ -44,6 +42,43 @@ export const HeroContainer = styled.div`
   img {
     max-width: 46%;
     flex: 1;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-block: 3rem;
+    font-size: 0.875rem;
+
+    div {
+      h1 {
+        width: 17rem;
+      }
+
+      p {
+        margin-bottom: 2.625rem;
+      }
+    }
+
+    .items {
+      grid-template-columns: max-content;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    font-size: 0.9375rem;
+
+    div h1 {
+      width: 100%;
+    }
+
+    .items {
+      grid-template-columns: repeat(2, max-content);
+    }
   }
 `
 
@@ -61,7 +96,7 @@ export const CoffeeListContainer = styled.div`
 
     color: ${(props) => props.theme.base.subtitle};
     font-family: 'Baloo 2', sans-serif;
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: 800;
     line-height: 130%;
 
@@ -75,5 +110,26 @@ export const CoffeeListContainer = styled.div`
 
     row-gap: 2.5rem;
     column-gap: 2rem;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    font-size: 0.875rem;
+    padding-bottom: 4rem;
+
+    > ul {
+      grid-template-columns: minmax(256px, 288px);
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    > ul {
+      grid-template-columns: repeat(2, minmax(256px, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 888px) and (max-width: 1280px) {
+    > ul {
+      grid-template-columns: repeat(3, minmax(256px, 1fr));
+    }
   }
 `

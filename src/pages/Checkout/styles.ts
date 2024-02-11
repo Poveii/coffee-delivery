@@ -12,6 +12,14 @@ export const CheckoutContainer = styled.div`
   & > :first-child {
     flex: 1;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    flex-direction: column-reverse;
+  }
+
+  @media screen and (min-width: 888px) and (max-width: 1180px) {
+    flex-direction: row;
+  }
 `
 
 export const SectionContainer = styled.section`
@@ -24,16 +32,32 @@ export const SectionContainer = styled.section`
     font-size: 1.125rem;
     line-height: 130%;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    font-size: 0.875rem;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1180px) {
+    font-size: 0.9375rem;
+  }
 `
 
 export const CardContainer = styled.div`
   padding: 2.5rem;
   background-color: ${(props) => props.theme.base.card};
+
+  @media screen and (min-width: 320px) and (max-width: 1180px) {
+    padding: 1.75rem;
+  }
 `
 
 export const SelectCardRoot = styled(RadioGroup.Root)`
   display: flex;
   gap: 0.75rem;
+
+  @media screen and (min-width: 320px) and (max-width: 1180px) {
+    flex-direction: column;
+  }
 `
 
 export const SelectedCoffeeContainer = styled(CardContainer)`
@@ -48,6 +72,10 @@ export const SelectedCoffeeContainer = styled(CardContainer)`
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 1024px) {
+    min-width: 100%;
   }
 `
 
@@ -70,7 +98,7 @@ export const HeadingContainer = styled.div`
     }
 
     p {
-      font-size: 0.875rem;
+      font-size: 0.875em;
       line-height: 130%;
       color: ${(props) => props.theme.base.text};
     }
@@ -116,6 +144,18 @@ export const FormContainer = styled.form`
   #fu {
     grid-area: fu;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 1180px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'cep'
+      'street'
+      'number'
+      'complement'
+      'district'
+      'city'
+      'fu';
+  }
 `
 
 export const Divider = styled.div`
@@ -129,7 +169,7 @@ export const BetweenContainer = styled.div<{ $bold?: boolean }>`
   justify-content: space-between;
 
   p {
-    font-size: 0.875rem;
+    font-size: 0.875em;
     line-height: 130%;
     color: ${(props) => props.theme.base.text};
   }
@@ -143,7 +183,7 @@ export const BetweenContainer = styled.div<{ $bold?: boolean }>`
     props.$bold &&
     `
     p, span {
-      font-size: 1.25rem;
+      font-size: 1.25em;
       font-weight: 700;
       color: ${props.theme.base.subtitle};
     }
@@ -182,5 +222,6 @@ export const IndexContainer = styled.div`
 
   > p {
     font-size: 0.875rem;
+    text-align: center;
   }
 `

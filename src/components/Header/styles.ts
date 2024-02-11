@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { ButtonBase } from '../../styles/base'
 
 export const HeaderContainer = styled.header`
-  width: 100%;
   height: 6.5rem;
 
   display: flex;
@@ -24,13 +23,31 @@ export const HeaderContainer = styled.header`
 
     list-style: none;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    img {
+      width: 4.75rem;
+      height: 2rem;
+    }
+
+    nav ul {
+      gap: 0.5rem;
+    }
+  }
 `
 
-export const AddressButton = styled(ButtonBase)`
+export const AddressButton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.5rem;
   background-color: ${(props) => props.theme.purple.light};
   color: ${(props) => props.theme.purple.dark};
-
+  border: none;
+  border-radius: 0.375rem;
   font-size: 0.875rem;
+  cursor: pointer;
 
   svg {
     color: ${(props) => props.theme.purple.default};
@@ -46,6 +63,15 @@ export const AddressButton = styled(ButtonBase)`
     svg {
       color: ${(props) => props.theme.base.white};
       transition: color 0.1s;
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    gap: 0.25rem;
+    font-size: 0.75rem;
+
+    span {
+      display: none;
     }
   }
 `

@@ -16,15 +16,15 @@ export const CheckoutCoffeeCardContainer = styled.div`
       height: 4rem;
     }
 
-    > p {
-      line-height: 130%;
-      color: ${(props) => props.theme.base.subtitle};
-    }
-
     .details {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+
+      > p {
+        line-height: 130%;
+        color: ${(props) => props.theme.base.subtitle};
+      }
 
       .actions {
         height: 2rem;
@@ -39,6 +39,29 @@ export const CheckoutCoffeeCardContainer = styled.div`
     font-weight: 700;
     line-height: 130%;
     color: ${(props) => props.theme.base.text};
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    position: relative;
+
+    .information {
+      width: 80%;
+      gap: 0.875rem;
+
+      > img {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .details p {
+        width: 80%;
+      }
+    }
+
+    > span {
+      position: absolute;
+      right: 0;
+    }
   }
 `
 
@@ -58,5 +81,11 @@ export const RemoveButton = styled.button`
   span {
     font-size: 0.75rem;
     color: ${(props) => props.theme.base.text};
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    span {
+      display: none;
+    }
   }
 `
