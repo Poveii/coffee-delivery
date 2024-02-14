@@ -1,18 +1,16 @@
-import { ReactNode, createContext, useCallback, useState } from 'react'
+import { ReactNode, createContext, useCallback, useReducer } from 'react'
 
-import { coffeeList } from '../data/coffeeList'
-
-interface CartItem {
-  id: number
-  itemImage: string
-  label: string
-  quantity: number
-  price: number
-}
+import { CartItem, cartReducer } from '../reducers/cart/reducer'
+import {
+  addItemToCartAction,
+  clearCartAction,
+  modifyQuantityItemAction,
+  removeItemFromCartAction,
+} from '../reducers/cart/actions'
 
 interface CartContextType {
   items: CartItem[]
-  modifyQuantityItems: (itemId: number, count: number) => void
+  modifyQuantityItem: (itemId: number, count: number) => void
   addItemToCart: (itemId: number, quantity: number) => void
   removeItemFromCart: (itemId: number) => void
   clearCart: () => void
@@ -24,16 +22,6 @@ interface CartContextProviderProps {
   children: ReactNode
 }
 
-const checkoutCartItems: CartItem[] = coffeeList.map((item) => {
-  return {
-    id: item.id,
-    itemImage: item.coffee,
-    label: item.title,
-    quantity: 1,
-    price: item.price,
-  }
-})
-
 // for debug proposes ↓
 /*
   const sampleCheckoutCartItems = checkoutCartItems.filter(
@@ -42,57 +30,31 @@ const checkoutCartItems: CartItem[] = coffeeList.map((item) => {
 */
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [items, setItems] = useState<CartItem[]>([])
+  const [cartState, dispatch] = useReducer(cartReducer, { items: [] })
 
-  const modifyQuantityItems = useCallback((itemId: number, count: number) => {
-    setItems((state) =>
-      state.map((item) => {
-        if (item.id === itemId) {
-          item.quantity = count
-        }
-        return item
-      }),
-    )
+  const { items } = cartState
+
+  const modifyQuantityItem = useCallback((itemId: number, count: number) => {
+    dispatch(modifyQuantityItemAction(itemId, count))
   }, [])
 
   const addItemToCart = (itemId: number, quantity: number) => {
-    const itemExists = items.find((item) => item.id === itemId)
-
-    if (itemExists) {
-      const newItems = items.map((item) => {
-        if (item.id === itemId) item.quantity += quantity
-        return item
-      })
-
-      return setItems(newItems)
-    }
-
-    setItems((state) => {
-      const item = checkoutCartItems[itemId]
-      item.quantity = quantity
-      return [...state, item]
-    })
+    dispatch(addItemToCartAction(itemId, quantity))
   }
 
   const removeItemFromCart = (itemId: number) => {
-    const item = items.find((item) => item.id === itemId)
-
-    setItems((state) =>
-      state.filter((stateItem) => {
-        return stateItem !== item
-      }),
-    )
+    dispatch(removeItemFromCartAction(itemId))
   }
 
   const clearCart = () => {
-    setItems([])
+    dispatch(clearCartAction())
   }
 
   return (
     <CartContext.Provider
       value={{
         items,
-        modifyQuantityItems,
+        modifyQuantityItem,
         addItemToCart,
         removeItemFromCart,
         clearCart,

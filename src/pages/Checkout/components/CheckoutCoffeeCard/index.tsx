@@ -28,10 +28,10 @@ export function CheckoutCoffeeCard({
   const [count, setCount] = useState(quantity)
   const newPrice = replaceDotWithComma(price * count)
 
-  const { modifyQuantityItems, removeItemFromCart } = useContext(CartContext)
+  const { modifyQuantityItem, removeItemFromCart } = useContext(CartContext)
   useEffect(() => {
-    modifyQuantityItems(itemId, count)
-  }, [count, itemId, modifyQuantityItems])
+    modifyQuantityItem(itemId, count)
+  }, [count, itemId, modifyQuantityItem])
 
   return (
     <CheckoutCoffeeCardContainer>
